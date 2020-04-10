@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from .models import Album , Song
 
@@ -9,4 +10,6 @@ def index(request):
     return render(request , 'music/index.html' , { 'all_album' : album_list })
 
 def detail(request , album_id):
-    return HttpResponse("<h1> welcome to Detail Page  </h1>")
+    album = get_object_or_404(Album , pk=album_id)
+    return render(request , 'music/detail.html', {'album': album} )
+    
