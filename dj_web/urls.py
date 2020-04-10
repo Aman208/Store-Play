@@ -16,7 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url , include
 
+from music import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^music/' ,include('music.urls'))
+    url(r'^music/', views.IndexView.as_view(), name='index'),
+    url(r'^music/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
+    url(r'^music/album/add/$', views.AlbumCreate.as_view(), name='album-add'),
+    url(r'^music/album/(?P<pk>[0-9]+)/$', views.AlbumUpdate.as_view(), name='album-update'),
+    url(r'^music/album/(?P<pk>[0-9]+)/delete/$', views.AlbumDelete.as_view(), name='album-delete'),
 ]

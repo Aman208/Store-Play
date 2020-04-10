@@ -6,7 +6,7 @@
     <div class="row">
   {%for album in all_album %}
     <div class="col-3">
-        <!-- <a ><img src="{{album.album_logo.url}}" height="420" width="460" ><br></a> -->
+        <a  href="{% url 'detail' album.id %}"><img src="https://upload.wikimedia.org/wikipedia/en/8/80/Dilwale_Dulhania_Le_Jayenge_poster.jpg" height="120" width="160" ><br></a>
         <h2>{{album.album_title}}</h2><br>
         <h3>{{album.artist}}</h3><br>
         <h4>{{album.id}}</h4>

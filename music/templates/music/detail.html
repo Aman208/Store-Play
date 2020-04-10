@@ -3,10 +3,11 @@
 {% block body %}
 <div class="row">
     <div class="col-3">
-    
+
+
       <!-- <img src="{{album.album_logo.url}}" height="420" width="420"> -->
-      <h2>{{album.album_title}}</h2><br>
-      <h3>{{album.artist}}</h3><br>
+      <h1>{{album.album_title}}</h1>
+      <h2>{{album.artist}}</h2>
     </div>
 
 
@@ -14,11 +15,15 @@
   <div class="container">
 
 
-   </div>
+  <form style="display:inline;" action="{% url 'detail' album.id %}" method="get">
+    <button type="submit" class="btn btn-outline-primary" >View All</button>
+  </form>
+  <!-- <form style="display:inline;"  action="{% url 'song-add' %}" method="get">
+    <button type="submit" class="btn btn-outline-primary" >Add New Song</button>
+  </form> -->
+  </div>
 <div class="nut">
-<h1>All Songs</h1> 
-
-
+<h1>All Songs</h1>
 <table>
   <thead>
     <tr>
@@ -27,20 +32,22 @@
   </thead>
 <tbody>
 
-
+</tbody>
 
   {% for song in album.song_set.all %}
 
   <tr>
     <td><hr class="style-five" ></td>
-    <td colspan="3">{{song.song_title}}</td> 
-    <td colspan="3">{{song.file_type}}</td> 
+    <td colspan="3">{{song.song_title}}</td>
+    <!-- <td colspan="3" >
+      <form class="woss1" action="{{song.song_file.url}}" method="get">
+        <button type="submit" class="btn btn-success"><i class="fas fa-play"></i>play</button>
+      </form>
+    </td> -->
   </tr>
-
   {% endfor %}
-</tbody> 
 </table>
-</div>  
- </div> 
+</div>
+</div>
 </div>
 {% endblock %}
