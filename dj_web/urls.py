@@ -18,6 +18,10 @@ from django.conf.urls import url , include
 
 from music import views
 
+
+admin.autodiscover()
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^music/', views.IndexView.as_view(), name='index'),
@@ -28,4 +32,7 @@ urlpatterns = [
     url(r'^register/$', views.UserFormView.as_view(), name='register'),
     url(r'^login/', views.UserLogin.as_view(), name='login'),
     url(r'^logout/$', views.LogOut, name='logout'),
+    url(r'^music/songs/$', views.SongsIndex.as_view(), name='music_songs'),
+    url(r'^music/songs/add$', views.SongCreate.as_view(), name='song-add'),
+    url(r'^music/songs/(?P<pk>[0-9]+)$', views.SongUpdate.as_view(), name='song-update'),
 ]

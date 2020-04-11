@@ -2,7 +2,7 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView , View
 from django.shortcuts import render, redirect ,get_object_or_404
 from django.urls import reverse_lazy
-from .models import Album 
+from .models import Album  ,Song
 from django.contrib.auth import authenticate , login ,logout
 from .forms import LoginForm ,UserForm 
 
@@ -103,4 +103,25 @@ class UserLogin(View):
                     return redirect('index')
             else:
                 return render(request, self.template_name, {'form': form})    
+
+
+
+# ===============================song============================
+
+class SongsIndex(generic.ListView):
+
+    template_name = 'music/song_index.html'
+    context_object_name = 'all_music'
+
+    def get_queryset(self):
+        return Song.objects.all()
+
+
+class SongCreate(CreateView):
+    model = Song
+    fields = ['album','file_type','song_title','song_file']
+
+class SongUpdate(UpdateView):
+    model = Song
+    fields = ['album', 'file_type', 'song_title', 'song_file']
     
